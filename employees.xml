@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+    <employee>
+        <name>Pat Cummins</name>
+        <designation>Technical Writer</designation>
+        <dateOfJoining>2022-01-15</dateOfJoining>
+        <address>123 Main St, USA</address>
+        <salary>600000</salary>
+    </employee>
+    <employee>
+        <name>Virat Kohli</name>
+        <designation>Software Engineer</designation>
+        <dateOfJoining>2021-06-20</dateOfJoining>
+        <address>456 Elm St, Canada</address>
+        <salary>550000</salary>
+    </employee>
+    <employee>
+        <name>Abhishek Sharma</name>
+        <designation>Technical Writer</designation>
+        <dateOfJoining>2020-03-10</dateOfJoining>
+        <address>789 Oak St, UK</address>
+        <salary>480000</salary>
+    </employee>
+</employees>
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+        // Load the XML file
+        fetch('employees.xml')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load employees.xml');
+                }
+                return response.text();
+            })
+            .then(xmlText => {
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, 'application/xml');
+                console.log('XML:', xml);
+
+                // Load the XSLT file
+                return fetch('transform.xslt')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to load transform.xslt');
+                        }
+                        return response.text();
+                    })
+                    .then(xsltText => {
+                        const xsltParser = new DOMParser();
+                        const xslt = xsltParser.parseFromString(xsltText, 'application/xml');
+                        console.log('XSLT:', xslt);
+                        const xsltProcessor = new XSLTProcessor();
+                        xsltProcessor.importStylesheet(xslt);
+
+                        // Apply the XSLT transformation
+                        const resultDocument = xsltProcessor.transformToFragment(xml, document);
+                        console.log('Result Document:', resultDocument);
+                        document.getElementById('content').appendChild(resultDocument);
+                    });
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById('content').innerText = 'Error loading data.';
+            });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
